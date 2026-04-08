@@ -185,3 +185,4 @@ main() {
 # ── Run ────────────────────────────────────────────────────────
 main "$@"
 # Updated by Shola
+# Enhanced logging added on feature branch
