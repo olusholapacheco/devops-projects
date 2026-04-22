@@ -1,0 +1,24 @@
+services:
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - webnet
+    depends_on:
+      - backend
+
+  backend:
+    image: ubuntu:latest
+    env_file:
+      - .env
+
+    command: bash -c "echo APP_ENV=$$APP_ENV && echo APP_NAME=$$APP_NAME && tail -f /dev/null"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
