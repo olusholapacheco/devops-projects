@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+
+# Environment files — never include these
+.env
+.env.*
+*.env
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files themselves
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Dependencies (reinstalled inside container)
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+
+# Documentation
+README.md
+docs/
+
+# Test files
+tests/
+*.test.js
+*_test.py

@@ -1,12 +1,9 @@
 FROM nginx:alpine
 
-# Create a non-root user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# This changes rarely — put first
+RUN apk add --no-cache curl
 
-# Copy our HTML file
+# This changes sometimes
 COPY index.html /usr/share/nginx/html/index.html
-
-# Switch to non-root user
-USER appuser
 
 EXPOSE 80
