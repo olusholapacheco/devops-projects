@@ -1,8 +1,12 @@
-# Use nginx as base image
 FROM nginx:alpine
 
-# Copy our HTML file into nginx's serving directory
+# Create a non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Copy our HTML file
 COPY index.html /usr/share/nginx/html/index.html
 
-# Nginx listens on port 80
+# Switch to non-root user
+USER appuser
+
 EXPOSE 80
