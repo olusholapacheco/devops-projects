@@ -1,0 +1,31 @@
+services:
+  database:
+    image: postgres:16-alpine
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - dbnetwork
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shola -d devopsdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - dbnetwork
+    depends_on:
+      database:
+        condition: service_healthy
+
+networks:
+  dbnetwork:
+    driver: bridge
+
+volumes:
+  pgdata:
